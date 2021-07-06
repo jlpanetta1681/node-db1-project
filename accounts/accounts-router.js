@@ -1,0 +1,103 @@
+// const express = require('express');
+// const db = require('../data/dbConfig.js');
+
+// const server = require('express').Router();
+
+// // db helper start
+// const Accounts = {
+// 	get() {
+// 		return db('accounts'); // short hand to do the same as above
+// 	},
+// 	getById(id) {
+// 		return db('accounts').where({ id });
+// 	},
+// 	create(account) {
+// 		return db('accounts').insert(account);
+// 	},
+// 	update(id, post) {
+// 		return db('accounts').where({ id }).update(account);
+// 	},
+// 	delete(id) {
+// 		return db('accounts').where({ id }).del();
+// 	},
+// };
+
+// server.get('/', (req, res) => {
+// 	db('accounts')
+// 		.then((accounts) => {
+// 			res.status(200).json(accounts);
+// 		})
+// 		.catch(() => {
+// 			res.status(500).json({ message: 'Could not retrieve accounts' });
+// 		});
+// });
+
+// server.get('/:id', (req, res) => {
+// 	db('accounts')
+// 		.where({ id: req.params.id })
+// 		.first()
+// 		.then((account) => {
+// 			if (account) {
+// 				res.status(200).json(account);
+// 			} else {
+// 				res.status(404).json({ message: 'Account not found' });
+// 			}
+// 		});
+// });
+
+// server.post('/', (req, res) => {
+// 	if (accountIsValid(req.body)) {
+// 		db('accounts')
+// 			.insert(req.body, 'id')
+// 			.then(([id]) => id)
+// 			.then((id) => {
+// 				db('accounts')
+// 					.where({ id })
+// 					.first()
+// 					.then((account) => {
+// 						res.status(201).json(account);
+// 					});
+// 			})
+// 			.catch(() => {
+// 				res.status(500).json({ message: 'Could not add the account' });
+// 			});
+// 	} else {
+// 		res.status(400).json({
+// 			message:
+// 				'Please provide name and budgetof zero or more to add this account.',
+// 		});
+// 	}
+// });
+
+// server.put('/:id', async (req, res) => {
+// 	db('accounts')
+// 		.where({ id: req.params.id })
+// 		.update(req.body)
+// 		.then((count) => {
+// 			if (count) {
+// 				res.status(200).json({ message: `${count} record(s) updated` });
+// 			} else {
+// 				res.status(404).json({ message: 'Account not found.' });
+// 			}
+// 		})
+// 		.catch(() => {
+// 			res.status(500).json({ message: 'Could not updat the account.' });
+// 		});
+
+// 	server.delete('/:id', (req, res) => {
+// 		db('accounts')
+// 			.where({ id: req.params.id })
+// 			.del()
+// 			.then((count) => {
+// 				res.status(200).json({ message: `${count} record(s) deleted` });
+// 			})
+// 			.catch(() => {
+// 				res.status(500).json({ message: 'Error deleting the account' });
+// 			});
+// 	});
+// });
+// function accountIsValid({ name, budget }) {
+// 	return name && typeof budget === 'number' && budget >= 0;
+// }
+
+// module.exports = server;
